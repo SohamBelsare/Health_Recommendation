@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancer Prediction Form</title>
+    <link rel="stylesheet" href="/static/cancer.css">
+</head>
+<body>
+
+<form action="/lung_cancer" method="post">
+    <h2><u>Lungs Cancer Prediction Form</u></h2>
+    Gender:<br><br>
+    <label for="Male">
+        <input type="radio" name="gender" value="1" id="Male"> Male
+    </label>
+    <label for="Female">
+        <input type="radio" name="gender" value="0" id="Female"> Female
+    </label><br>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age" required><br><br>
+
+    <label for="smoking">Smoking:</label>
+    <label for="Yes">
+        <input type="radio" name="smoking" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="smoking" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="yellowfinger">Yellow Fingers:</label>
+    <label for="Yes">
+        <input type="radio" name="yellowfinger" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="yellowfinger" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="anxiety">Anxiety:</label>
+    <label for="Yes">
+        <input type="radio" name="anxiety" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="anxiety" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Peer_pressure">Peer Pressure:</label>
+    <label for="Yes">
+        <input type="radio" name="Peer_pressure" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Peer_pressure" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Chronic Disease">Chronic Disease:</label>
+    <label for="Yes">
+        <input type="radio" name="Chronic Disease" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Chronic Disease" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Fatigue">Fatigue:</label>
+    <label for="Yes">
+        <input type="radio" name="Fatigue" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Fatigue" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Allergy">Allergy:</label>
+    <label for="Yes">
+        <input type="radio" name="Allergy" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Allergy" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Wheezing">Wheezing:</label>
+    <label for="Yes">
+        <input type="radio" name="Wheezing" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Wheezing" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Alcohol">Alcohol:</label>
+    <label for="Yes">
+        <input type="radio" name="Alcohol" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Alcohol" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Coughing">Coughing:</label>
+    <label for="Yes">
+        <input type="radio" name="Coughing" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Coughing" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Shortness of Breath">Shortness of Breath:</label>
+    <label for="Yes">
+        <input type="radio" name="Shortness of Breath" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Shortness of Breath" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Swallowing Difficulty">Swallowing Difficulty:</label>
+    <label for="Yes">
+        <input type="radio" name="Swallowing Difficulty" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Swallowing Difficulty" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <label for="Chest pain">Chest pain:</label>
+    <label for="Yes">
+        <input type="radio" name="Chest pain" value="2" id="Yes"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Chest pain" value="1" id="No"> No
+    </label>
+    <br><br>
+
+    <input type="submit" value="Predict">
+</form>
+
+</body>
+</html>

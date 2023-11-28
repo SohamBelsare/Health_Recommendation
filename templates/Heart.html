@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Checkup Form</title>
+    <link rel="stylesheet" href="/static/heart_disease_styles.css">
+</head>
+<body>
+
+<form action="/heart" method="post">
+    <h2>Heart Disease Checkup</h2>
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age"><br><br>
+
+    Sex:<br><br>
+    <label for="Male">
+        <input type="radio" name="gender" value="M" id="Male"> Male
+    </label>
+    <label for="Female">
+        <input type="radio" name="gender" value="F" id="Female"> Female
+    </label>
+    <br>
+
+
+    ChestpainType:<br><br>
+    <label for="TA">
+        <input type="radio" name="ChestpainType" value="TA" id="TA"> TA
+    </label>
+    <label for="ATA">
+        <input type="radio" name="ChestpainType" value="ATA" id="ATA"> ATA
+    </label>
+    <label for="NAP">
+        <input type="radio" name="ChestpainType" value="NAP" id="NAP"> NAP
+    </label>
+    <label for="ASY">
+        <input type="radio" name="ChestpainType" value="ASY" id="ASY"> ASY
+    </label><br>
+
+    <label for="RestingBP">RestingBP:</label>
+    <input type="text" id="RestingBP" name="RestingBP" required><br><br>
+
+    <label for="Cholesterol">Cholesterol Level:</label>
+    <input type="text" id="cholesterol" name="cholesterol" required><br><br>
+
+    <label for="FastingBS">Fasting Blood Sugar:</label>
+    <label for="Yes">
+        <input type="radio" name="FastingBS" value="1" id="1"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="FastingBS" value="0" id="0"> No
+    </label><br>
+
+    <label for="RestingECG">RestingECG :</label>
+    <label for="Normal">
+        <input type="radio" name="RestingECG" value="Normal" id="Normal"> Normal
+    </label>
+    <label for="ST">
+        <input type="radio" name="RestingECG" value="ST" id="ST"> ST
+    </label><br>
+
+    <label for="heart-rate">Max Heart Rate:</label>
+    <input type="text" id="heart-rate" name="heart-rate" required><br><br>
+
+    <label for="ExerciseEngina">Exercise Engina:</label>
+    <label for="Yes">
+        <input type="radio" name="ExerciseEngina" value="Y" id="Y"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="ExerciseEngina" value="N" id="N"> No
+    </label><br>
+
+    <label for="Oldpeak">Oldpeak:</label>
+        <input type="text" id="Oldpeak" name="Oldpeak">
+    <br><br>
+    <!---
+    <label for="ST_Slope">ST_Slope:</label>
+    <label for="Up">
+        <input type="radio" name="ST_Slope" value="Up" id="Up"> Yes
+    </label>
+    <label for="Flat">
+        <input type="radio" name="ST_Slope" value="Flat" id="Flat"> No
+    </label><br>
+    -->
+    
+
+    <input type="submit" value="Predict">
+</form>
+
+</body>
+</html>

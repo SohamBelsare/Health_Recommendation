@@ -1,0 +1,33 @@
+<!-- history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkup History</title>
+</head>
+<body>
+    <!--<h2>Checkup History for {{ user.Name }}</h2>-->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Checkup Type</th>
+                <th>Checkup Result</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for checkup in checkups %}
+                <tr>
+                    <td>{{ checkup.id }}</td>
+                    <td>{{ checkup.Checkup_type }}</td>
+                    <td>{{ checkup.Checkup_Result }}</td>
+                    <td>{{ checkup.Date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
