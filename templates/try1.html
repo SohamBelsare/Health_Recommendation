@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container,
+        .suggestion-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333333;
+        }
+
+        .attribute,
+        .suggestion-container p {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .attribute span {
+            font-weight: bold;
+        }
+
+        .normal-range {
+            color: #4CAF50;
+        }
+
+        .out-of-range {
+            color: #FF5722;
+        }
+
+        #visitResult {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+        /* table */
+        
+        .table-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .attribute-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .attribute-table td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .attribute {
+            font-weight: bold;
+        }
+
+        .spacer {
+            width: 20px; /* Adjust the width of the empty column */
+        }
+
+        .value {
+            text-align: right;
+        }
+
+       
+    </style>
+    <title>Health Assessment</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Assessment</h1>
+
+        <div class="table-container">
+            <table class="attribute-table">
+                <tr>
+                    <td class="attribute" id="sleepDuration">Sleep Duration:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="sleepDurationValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="qualityOfSleep">Quality of Sleep:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="qualityOfSleepValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="physicalActivityLevel">Physical Activity Level:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="physicalActivityLevelValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="stressLevel">Stress Level:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="stressLevelValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="bmi">BMI:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="bmiValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="bloodPressure">Blood Pressure:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="bloodPressureValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="heartRate">Heart Rate:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="heartRateValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="dailySteps">Daily Steps:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="dailyStepsValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="fever">Fever:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="feverValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="cough">Cough:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="coughValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="fatigue">Fatigue:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="fatigueValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="breathingDifficulty">Difficulty in Breathing:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="breathingDifficultyValue" class="normal-range"></span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="cholesterol">Cholesterol:</td>
+                    <td class="spacer"></td>
+                    <td class="value"><span id="cholesterolValue" class="normal-range"></span></td>
+                </tr>
+            </table>
+        </div>
+        <div id="visitResult"></div>
+
+        <button onclick="fetchHealthData()">Fetch Health Data</button>
+    </div>
+    
+   
+    <div class="suggestion-container">
+        <h2>Suggestions:</h2>
+        <div class="suggestion-card">
+            <p id="suggestionText"></p>
+        </div>
+    </div>
+
+    <script>
+        function fetchHealthData() {
+            fetch('/get_health_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update attribute values and colors
+                    // updateAttribute("genderValue", data.gender, isNormalGender(data.gender));
+                    // updateAttribute("ageValue", data.age, isNormalAge(data.age));
+                    updateAttribute("sleepDurationValue", data.sleepDuration, isNormalSleepDuration(data.sleepDuration));
+                    updateAttribute("qualityOfSleepValue", data.qualityOfSleep, isNormalQualityOfSleep(data.qualityOfSleep));
+                    updateAttribute("physicalActivityLevelValue", data.physicalActivityLevel, isNormalPhysicalActivityLevel(data.physicalActivityLevel));
+                    updateAttribute("stressLevelValue", data.stressLevel, isNormalStressLevel(data.stressLevel));
+                    updateAttribute("bmiValue", data.bmi, isNormalBMI(data.bmi));
+                    updateAttribute("bloodPressureValue", data.bloodPressure, isNormalBloodPressure(data.bloodPressure));
+                    updateAttribute("heartRateValue", data.heartRate, isNormalHeartRate(data.heartRate));
+                    updateAttribute("dailyStepsValue", data.dailySteps, isNormalDailySteps(data.dailySteps));
+                    updateAttribute("feverValue", convertToYesNo(data.fever), isNormalFever(data.fever));
+                    updateAttribute("coughValue", convertToYesNo(data.cough), isNormalCough(data.cough));
+                    updateAttribute("fatigueValue", convertToYesNo(data.fatigue), isNormalFatigue(data.fatigue));
+                    updateAttribute("breathingDifficultyValue", convertToYesNo(data.breathingDifficulty), isNormalBreathingDifficulty(data.breathingDifficulty));
+                    updateAttribute("cholesterolValue", data.cholesterol, isNormalCholesterol(data.cholesterol));
+
+                    // Perform health assessment logic
+                    let shouldVisitDoctor = data.result;
+
+                    // Display assessment result
+                    const resultElement = document.getElementById("visitResult");
+                    resultElement.textContent = shouldVisitDoctor ? "You need to consult a doctor !" : "You're doing well. No need to visit a doctor at the moment.But do have a regular checkup every month";
+
+                    updateSuggestionCard(data);
+
+                })
+                .catch(error => console.error('Error fetching health data:', error));
+        }
+
+        function updateAttribute(attributeId, value, isNormal) {
+            const element = document.getElementById(attributeId);
+            element.innerText = value;
+            element.classList.toggle("normal-range", isNormal);
+            element.classList.toggle("out-of-range", !isNormal);
+        }
+
+        // Add more functions for other attributes as needed
+        // function isNormalGender(value) {
+        //     // Replace with actual logic to determine if the gender is normal
+        //     return true; // For demonstration purposes
+        // }
+
+        // function isNormalAge(value) {
+        //     // Replace with actual logic to determine if the age is normal
+        //     return value <= 30;
+        // }
+        function convertToYesNo(value) {
+            return value === 1 ? "Yes" : "No";
+        }
+        function isNormalSleepDuration(value) {
+            // Replace with actual logic to determine if the sleep duration is normal
+            if(value>=6 && value <=9){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalQualityOfSleep(value) {
+            if(value>=5 && value <=10){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+        function isNormalPhysicalActivityLevel(value) {
+            if(value>=60){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalStressLevel(value) {
+            if(value>=2.5){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        function isNormalBMI(value) {
+            if(value>=18.5 && value <=24.9){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalBloodPressure(value) {
+            if(value>=90 && value <=120){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalHeartRate(value) {
+            if(value>=60 && value <=100){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalDailySteps(value){
+            if(value>=2500){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalFever(value) {
+          
+          if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalCough(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalFatigue(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalBreathingDifficulty(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalCholesterol(value) {
+            if(value>=200 && value <=239){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+       
+
+        function updateSuggestionCard(data) {
+            const suggestionElement = document.getElementById("suggestionText");
+
+            // Reset suggestion text
+            suggestionElement.textContent = "";
+
+            // Check individual parameters and provide suggestions
+
+            if (!isNormalSleepDuration(data.sleepDuration)) {
+                suggestionElement.textContent += "Ensure you get 6-9 hours of sleep each night for better health.";
+            }
+
+            if (!isNormalQualityOfSleep(data.qualityOfSleep)) {
+                suggestionElement.textContent += "Improve the quality of your sleep for overall well-being. ";
+            }
+
+            if (!isNormalPhysicalActivityLevel(data.physicalActivityLevel)) {
+                suggestionElement.textContent += "Engage in at least 60 minutes of physical activity every day. ";
+            }
+
+            if (!isNormalStressLevel(data.stressLevel)) {
+                suggestionElement.textContent += "Consider practicing yoga and meditation to manage stress. ";
+            }
+
+            if (!isNormalBloodPressure(data.bloodPressure)) {
+                suggestionElement.textContent += "Maintain a healthy blood pressure level. Consider reducing salt intake and regular exercise. ";
+            }
+
+            if (!isNormalBMI(data.bmi)) {
+                suggestionElement.textContent += "Achieve and maintain a healthy BMI by focusing on a balanced diet and regular exercise. ";
+            }
+
+            if (!isNormalHeartRate(data.heartRate)) {
+                suggestionElement.textContent += "Keep your heart rate within a normal range through regular exercise and a healthy lifestyle. ";
+            }
+
+            if (!isNormalDailySteps(data.dailySteps)) {
+                suggestionElement.textContent += "Increase your daily steps to ensure an active lifestyle. Aim for at least 2500 steps per day. ";
+            }
+
+            if (!isNormalFever(data.fever)) {
+                suggestionElement.textContent += "If you have a fever, consider resting and staying hydrated. Consult a healthcare professional if needed. ";
+            }
+
+            if (!isNormalCough(data.cough)) {
+                suggestionElement.textContent += "If you have a persistent cough, consult a healthcare professional for advice. ";
+            }
+
+            if (!isNormalFatigue(data.fatigue)) {
+                suggestionElement.textContent += "Combat fatigue by ensuring adequate sleep and maintaining a balanced diet. ";
+            }
+
+            if (!isNormalBreathingDifficulty(data.breathingDifficulty)) {
+                suggestionElement.textContent += "If you experience difficulty in breathing, seek medical attention immediately. ";
+            }
+
+            if (!isNormalCholesterol(data.cholesterol)) {
+                suggestionElement.textContent += "Maintain healthy cholesterol levels through a balanced diet and regular exercise. ";
+            }
+
+            // If no specific suggestions, provide a general message
+            if (suggestionElement.textContent === "") {
+                suggestionElement.textContent = "No specific suggestions at the moment. Keep up the good work and maintain a healthy lifestyle.";
+            }
+        }
+    </script>
+</body>
+</html>

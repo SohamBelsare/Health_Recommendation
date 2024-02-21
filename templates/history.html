@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkup History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Checkup History</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Checkup Result</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for checkup in checkups %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ checkup.Checkup_Result }}</td>
+                    <td>{{ checkup.Date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+   
+    <style>
+
+        body {
+            background-color: black;
+        }
+
+        .flex-wrapper {
+          display: flex;
+          flex-flow: row nowrap;
+        }  
+
+        .single-chart {
+           width: 33%;
+           justify-content: space-around ;
+        }
+
+        .circular-chart {
+           display: block;
+           margin: 10px auto;
+           max-width: 80%;
+           max-height: 250px;
+        }
+
+        .circle-bg {
+          fill: none;
+          stroke: #eee;
+          stroke-width: 3.8;
+        }
+
+        .circle {
+          fill: none;
+          stroke-width: 2.8;
+          stroke-linecap: round;
+          animation: progress 1s ease-out forwards;
+        }
+
+        @keyframes progress {
+           0% {
+                stroke-dasharray: 0 100;
+            }
+        }
+
+        .circular-chart.green .circle {
+          stroke: #4CC790;
+         }
+
+        .percentage {
+           fill: white;
+           font-family: sans-serif;
+           font-size: 0.5em;
+           text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="flex-wrapper" >
+        
+      <!-- idhar change kar dena => jaha pe 60 likha hai-->
+        <div class="single-chart" style="margin: auto;">
+          <svg viewBox="0 0 36 36" class="circular-chart green">
+            <path class="circle-bg"
+              d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            <path class="circle"
+              stroke-dasharray="{{percent}}, 100" 
+              d="M18 2.0845
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
+            />
+            <text x="18" y="20.35" class="percentage" id="result">{{percent}}%</text>
+          </svg>
+          
+        </div>
+        
+        
+      </div>
+      <br>
+      <br>
+      <br>
+      {% if result=='Yes' %}
+        <h1 style="color: #eee;  text-align: center; font-size: 50px;">You need to visit a doctor</h1>
+      {% else %}
+        <h1 style="color: #eee;  text-align: center; font-size: 50px;">You are all safe</h1>
+      {% endif %}
+    
+    <br>
+    
+    <!-- idhar change kar dena-->
+    <h3 style="color: #eee;  text-align: center; font-size: 20px;">You have {{percent}}% chance to contract it</h3>
+
+    
+</body>
+</html>

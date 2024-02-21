@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Checkup Form</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f6f6f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      text-align: left;
+      margin: 20px auto;
+      margin-top: 1600px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="range"] {
+      width: calc(100% - 22px);
+      margin: 0;
+      padding: 0;
+      border: none;
+      appearance: none;
+      background-color: #ddd;
+      height: 10px;
+      border-radius: 5px;
+      outline: none;
+      display: inline-block;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: #29e738;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      appearance: none;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: #29e738;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    span {
+      display: inline-block;
+      margin-left: 5px;
+    }
+
+    button {
+      background-color: #29e738;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #1c1c1c;
+    }
+
+    .interactive-button {
+      display: inline-block;
+      margin: 0 10px;
+      background-color: darkblue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .interactive-button:hover {
+      background-color: #2980b9;
+    }
+
+    .interactive-buttons {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .parameter-label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<form action="/checkup-form" method="POST">
+
+  <!-- Name -->
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <!-- Age -->
+  <label for="age">Age:</label>
+  <input type="number" id="age" name="age" required>
+
+  <!-- Gender -->
+  <label>Gender:</label>
+  <div class="interactive-buttons">
+    <button type="button" class="interactive-button gender-button" data-value="1">Male</button>
+    <button type="button" class="interactive-button gender-button" data-value="0">Female</button>
+  </div>
+  <input type="hidden" id="gender" name="gender" required>
+
+  <!-- Sleep Duration -->
+  <label for="sleepDuration">Sleep Duration (in hrs):</label>
+  <input type="text" id="sleepDuration" name="sleepDuration" placeholder="6" required>
+
+  <!-- Quality Of Sleep -->
+  <label for="qualityOfSleep">Quality Of Sleep (Rate yourself on a scale of 1 to 10):</label>
+  <input type="range" id="qualityOfSleep" name="qualityOfSleep" min="0" max="10" step="1" value="5" required>
+  <span id="qualityOfSleepValue">5</span>
+
+  <!-- Physical Activity -->
+  <label for="physicalActivity">Physical Activity Level (Rate yourself on a scale of 1 to 10):</label>
+  <input type="range" id="physicalActivity" name="physicalActivity" min="0" max="10" step="0.1" value="6" required>
+  <span id="physicalActivityValue">6</span>
+
+  <!-- Stress Level -->
+  <label for="stressLevel">Stress Level (Rate yourself on a scale of 1 to 10):</label>
+  <input type="range" id="stressLevel" name="stressLevel" min="0" max="10" step="1" value="4" required>
+  <span id="stressLevelValue">4</span>
+
+  <!-- Height -->
+  <label for="height">Height (meters):</label>
+  <input type="number" step="0.01" id="height" name="height" placeholder="1.7" required>
+
+  <!-- Weight -->
+  <label for="weight">Weight (kg):</label>
+  <input type="number" step="0.1" id="weight" name="weight" placeholder="74" required>
+
+  <!-- BMI -->
+  <label for="bmi">BMI:</label>
+  <input type="text" id="bmi" name="bmi" readonly>
+
+  <!-- Blood Pressure -->
+  <label for="bloodPressure">Blood Pressure (in mm-Hg):</label>
+  <input type="text" id="bloodPressure" name="bloodPressure" placeholder="120/80" required>
+
+  <!-- Heart Rate -->
+  <label for="heartRate">Heart Rate (Beats per Minutes):</label>
+  <input type="number" id="heartRate" name="heartRate" placeholder="75" required>
+
+  <!-- Daily Steps -->
+  <label for="dailySteps">Daily Steps:</label>
+  <input type="number" id="dailySteps" name="dailySteps" placeholder="1000" required>
+
+  <!-- Body Temperature -->
+  <label for="bodytemp">Body Temperature (degree Celsius): </label>
+  <input type="number" id="bodytemp" name="bodytemp" placeholder="37.5" required>
+
+  <!-- Cough -->
+  <label>Cough:</label>
+  <div class="interactive-buttons">
+    <button type="button" class="interactive-button cough-button" data-value="1">Yes</button>
+    <button type="button" class="interactive-button cough-button" data-value="0">No</button>
+  </div>
+  <input type="hidden" id="cough" name="cough" required>
+
+  <!-- Fatigue -->
+  <label>Fatigue (Extreme Tiredness):</label>
+  <div class="interactive-buttons">
+    <button type="button" class="interactive-button fatigue-button" data-value="1">Yes</button>
+    <button type="button" class="interactive-button fatigue-button" data-value="0">No</button>
+  </div>
+  <input type="hidden" id="fatigue" name="fatigue" required>
+
+  <!-- Difficulty in Breathing -->
+  <label>Difficulty In Breathing:</label>
+  <div class="interactive-buttons">
+    <button type="button" class="interactive-button breathing-button" data-value="1">Yes</button>
+    <button type="button" class="interactive-button breathing-button" data-value="0">No</button>
+  </div>
+  <input type="hidden" id="difficultyBreathing" name="difficultyBreathing" required>
+  <br><br>
+
+  <!-- Parameter Section -->
+  <div>
+    <label class="parameter-label">Saturated and Trans Fats<br> (Red meat, full-fat dairy products, processed foods, and commercially baked goods):</label>
+    <div class="interactive-buttons">
+      <button type="button" class="interactive-button fats-button" data-value="2">Daily</button>
+      <button type="button" class="interactive-button fats-button" data-value="1">Frequently</button>
+      <button type="button" class="interactive-button fats-button" data-value="0">Rarely</button>
+    </div>
+    <input type="hidden" id="saturatedTransFats" name="saturatedTransFats" required>
+  </div>
+  <br><br>
+
+  <!-- Dietary Cholesterol -->
+<label for="dietaryCholesterol">Dietary Cholesterol<br> (Egg yolks, organ meats, and shellfish):</label>
+<div class="interactive-buttons">
+  <button type="button" class="interactive-button cholesterol-button" data-value=2>Daily</button>
+  <button type="button" class="interactive-button cholesterol-button" data-value=1>Frequently</button>
+  <button type="button" class="interactive-button cholesterol-button" data-value=0>Rarely</button>
+</div>
+<input type="hidden" id="dietaryCholesterol" name="dietaryCholesterol" required>
+<br><br>
+
+<!-- Omega-3 Fatty Acids -->
+<label for="omega3FattyAcids">Omega-3 Fatty Acids<br> (Fatty fish (salmon, mackerel), flaxseeds, chia seeds, and walnuts):</label>
+<div class="interactive-buttons">
+  <button type="button" class="interactive-button omega3-button" data-value=0>Daily</button>
+  <button type="button" class="interactive-button omega3-button" data-value=1>Frequently</button>
+  <button type="button" class="interactive-button omega3-button" data-value=2>Rarely</button>
+</div>
+<input type="hidden" id="omega3FattyAcids" name="omega3FattyAcids" required>
+<br><br>
+
+<!-- Soluble Fiber -->
+<label for="solubleFiber">Soluble Fiber<br> (Oats, barley, beans, lentils, fruits, and vegetables):</label>
+<div class="interactive-buttons">
+  <button type="button" class="interactive-button fiber-button" data-value=0>Daily</button>
+  <button type="button" class="interactive-button fiber-button" data-value=1>Frequently</button>
+  <button type="button" class="interactive-button fiber-button" data-value=2>Rarely</button>
+</div>
+<input type="hidden" id="solubleFiber" name="solubleFiber" required>
+<br><br>
+
+<!-- Alcohol Consumption -->
+<label for="alcoholConsumption">Alcohol Consumption:</label>
+<div class="interactive-buttons">
+  <button type="button" class="interactive-button alcohol-button" data-value=2>Daily</button>
+  <button type="button" class="interactive-button alcohol-button" data-value=1>Frequently</button>
+  <button type="button" class="interactive-button alcohol-button" data-value=0>Rarely/No</button>
+</div>
+<input type="hidden" id="alcoholConsumption" name="alcoholConsumption" required>
+<br><br>
+
+<!-- Smoking -->
+<label for="smoking">Smoking:</label>
+<div class="interactive-buttons">
+  <button type="button" class="interactive-button smoking-button" data-value=1>Yes</button>
+  <button type="button" class="interactive-button smoking-button" data-value=0>No</button>
+</div>
+<input type="hidden" id="smoking" name="smoking" required>
+<br><br>
+
+
+  <!-- Submit and Reset Buttons -->
+  <button type="reset">Reset</button>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+ 
+
+  // Display the current value of the sliders
+  document.getElementById('physicalActivity').addEventListener('input', function() {
+    document.getElementById('physicalActivityValue').innerText = this.value;
+  });
+  
+  document.getElementById('stressLevel').addEventListener('input', function() {
+    document.getElementById('stressLevelValue').innerText = this.value;
+  });
+  
+  document.getElementById('qualityOfSleep').addEventListener('input', function() {
+    document.getElementById('qualityOfSleepValue').innerText = this.value;
+  });
+  
+  
+  // JavaScript function to calculate BMI
+  function calculateBMI() {
+    var height = document.getElementById('height').value;
+    var weight = document.getElementById('weight').value;
+    var bmiField = document.getElementById('bmi');
+  
+    if (height && weight) {
+      var bmi = (weight / (height * height)).toFixed(2);
+      bmiField.value = bmi;
+    } else {
+      bmiField.value = '';
+    }
+  }
+  
+  // Attach the calculateBMI function to the input fields' input event
+  document.getElementById('height').addEventListener('input', calculateBMI);
+  document.getElementById('weight').addEventListener('input', calculateBMI);
+  
+  
+  
+  function checkCholesterolLevel() {
+    var cholesterolInput = document.getElementById("cholesterolLevel");
+    var output = document.getElementById("cholesterolOutput");
+    var cholesterolValue = parseFloat(cholesterolInput.value);
+  
+    if (cholesterolValue < 200) {
+      cholesterolInput.setAttribute("value",0);
+    } else if (cholesterolValue >= 200 && cholesterolValue <= 239) {
+      cholesterolInput.setAttribute("value",1);
+    } else {
+      cholesterolInput.setAttribute("value",2);
+    }
+    console.log(cholesterolInput.getAttribute("value"))
+  }
+  
+  
+  // Function to handle interactive buttons
+  function handleInteractiveButton(buttonClass, inputId) {
+    var buttons = document.querySelectorAll(buttonClass);
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var value = this.getAttribute('data-value');
+        document.getElementById(inputId).value = value;
+        resetInteractiveButtons(buttonClass, value);
+      });
+    });
+  }
+  
+  // Function to reset interactive buttons' styles
+  function resetInteractiveButtons(buttonClass, selectedValue) {
+    var buttons = document.querySelectorAll(buttonClass);
+    buttons.forEach(function(button) {
+      button.style.backgroundColor = button.getAttribute('data-value') === selectedValue ? '#1c1c1c' : '#29e738';
+      button.style.color = button.getAttribute('data-value') === selectedValue ? '#fff' : 'initial';
+    });
+  }
+  
+  // Call the function for each set of interactive buttons
+  handleInteractiveButton('.gender-button', 'gender');
+  handleInteractiveButton('.fever-button', 'fever');
+  handleInteractiveButton('.cough-button', 'cough');
+  handleInteractiveButton('.fatigue-button', 'fatigue');
+  handleInteractiveButton('.breathing-button', 'difficultyBreathing');
+  
+  handleParameterButtons('Saturated and Trans Fats', 'fats-button', 'saturatedTransFats');
+  handleParameterButtons('Dietary Cholesterol', 'cholesterol-button', 'dietaryCholesterol');
+  handleParameterButtons('Omega-3 Fatty Acids', 'omega3-button', 'omega3FattyAcids');
+  handleParameterButtons('Soluble Fiber', 'fiber-button', 'solubleFiber');
+  handleParameterButtons('Alcohol Consumption', 'alcohol-button', 'alcoholConsumption');
+  handleParameterButtons('Smoking', 'smoking-button', 'smoking');
+  
+  function handleParameterButtons(parameter, buttonClass, inputId) {
+    var buttons = document.querySelectorAll('.' + buttonClass);
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var value = this.getAttribute('data-value');
+        document.getElementById(inputId).value = value;
+        resetInteractiveButtons('.' + buttonClass, value);
+      });
+    });
+  }
+  
+  
+  </script>
+
+</body>
+</html>

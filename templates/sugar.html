@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Checkup Form</title>
+    <link rel="stylesheet" href="/static/diabetes_styles.css">
+</head>
+<body>
+
+<form action="/diabetes" method="post">
+    <h2><u>Diabetes Checkup Form</u></h2>
+    Gender:<br><br>
+    <label for="Male">
+        <input type="radio" name="gender" value="1" id="Male"> Male
+    </label>
+    <label for="Female">
+        <input type="radio" name="gender" value="0" id="Female"> Female
+    </label><br>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age" required><br><br>
+
+    <label for="Hypertension">Hypertension:</label>
+    <label for="Yes">
+        <input type="radio" name="Hypertension" value="1" id="Y"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Hypertension" value="0" id="N"> No
+    </label><br>
+    <!--
+    <label for="smokinghistory">Smoking History:</label>
+    <label for="former">
+        <input type="radio" name="smokinghistory" value="former" id="former"> former
+    </label>
+    <label for="current">
+        <input type="radio" name="smokinghistory" value="current" id="current"> current
+    </label>
+    <label for="not current">
+        <input type="radio" name="smokinghistory" value="not current" id="not current"> not current
+    </label>
+    <label for="never">
+        <input type="radio" name="smokinghistory" value="never" id="never"> never
+    </label>
+    <label for="No Info">
+        <input type="radio" name="smokinghistory" value="No Info" id="No Info"> No Info
+    </label>-->
+    <label for="Heart_Disease">HD:</label>
+    <label for="Yes">
+        <input type="radio" name="Heart_Disease" value="1" id="Y"> Yes
+    </label>
+    <label for="No">
+        <input type="radio" name="Heart_Disease" value="0" id="N"> No
+    </label><br>
+
+    <label for="bmi">BMI:</label>
+    <input type="text" id="bmi" name="bmi" required><br><br>
+
+    <label for="hba1c">HBA1c_level:</label>
+    <input type="text" id="hba1c" name="hba1c" required><br><br>
+
+    <label for="bgl">Blood Glucose Level:</label>
+    <input type="text" id="bgl" name="bgl" required><br><br>
+
+    <input type="submit" value="Predict">
+</form>
+
+</body>
+</html>
