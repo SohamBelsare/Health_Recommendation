@@ -20,6 +20,7 @@ cd health-checkup-recommendation
 ### 2. Install Dependencies
 
 ### 3. Run the Application
+python ./app.py
 
 The application should now be running locally. You can access it by navigating to http://localhost:5000 in your web browser.
 
