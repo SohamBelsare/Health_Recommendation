@@ -1,0 +1,9 @@
+.git/
+__pycache__/
+*.pyc
+tests/
+docs/
+*.csv
+*.xlsx
+*.h5
+*.hdf5
