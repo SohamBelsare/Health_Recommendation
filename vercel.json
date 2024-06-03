@@ -6,7 +6,7 @@
             "use": "@vercel/python",
             "config": {
                 "runtime": "python3.8",
-                "buildCommand": "pip install -r requirements.txt"
+                "buildCommand": "apt-get update && apt-get install -y python3-distutils && pip install -r requirements.txt"
             }
         }
     ],
