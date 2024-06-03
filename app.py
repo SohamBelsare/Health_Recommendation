@@ -240,7 +240,7 @@ def review(checkup_id):
     print("Checkup ID:", checkup_id)
     # ... rest of your code ...
     details=Checkupdetails.query.filter_by(id=checkup_id).all()
-    return render_template('reviewform.html',data=details[0])
+    return render_template('review.html',data=details[0])
 
 
 
@@ -486,7 +486,6 @@ def logout():
     return redirect(url_for('helloworld'))
 
 
-if __name__=='__main__':
-    app.run(debug=True)
+
 
 
