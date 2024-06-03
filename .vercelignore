@@ -7,3 +7,5 @@ docs/
 *.xlsx
 *.h5
 *.hdf5
+*.db
+*.md
