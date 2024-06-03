@@ -171,6 +171,14 @@ def login():
             return 'wrong username and password'
 
     # If the request method is GET, render the login page
+@app.route('/version1')
+def version1():
+    if not session.get('logged_in'):
+        return redirect(url_for('helloworld'))  # Redirect to login page if not logged in
+    else:
+        user = User.query.filter_by(Adhaar= session['adhaar']).first()
+        return render_template('Dashboard.html', name=user.Name,Age=user.Age,username=user.Username,password=user.Password,adhaar=user.Adhaar)
+    
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
