@@ -6,111 +6,120 @@
   <title>Health Checkup Form</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f6f6f6;
-      display:flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-    form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 800px; /* Adjusted max-width */
-      text-align: left;
-      margin: 20px;
-      margin-top: 1300px; /* Added margin for spacing */
-    }
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  margin: 20px auto;
+  margin-top: 1600px;
+}
 
-    label {
-      display: inline-block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
 
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
 
-    input[type="range"] {
-      width: calc(100% - 22px); /* Adjust the width to fit within the form */
-      margin: 0;
-      padding: 0;
-      border: none;
-      appearance: none; /* Remove default styling */
-      background-color: #ddd; /* Background color of the slider track */
-      height: 10px; /* Height of the slider track */
-      border-radius: 5px; /* Rounded corners */
-      outline: none; /* Remove default focus styles */
-      display: inline-block; /* Display slider inline */
-    }
+input[type="range"] {
+  width: calc(100% - 22px);
+  margin: 0;
+  padding: 0;
+  border: none;
+  appearance: none;
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  outline: none;
+  display: inline-block;
+}
 
-    input[type="range"]::-webkit-slider-thumb {
-      width: 20px; /* Width of the slider thumb */
-      height: 20px; /* Height of the slider thumb */
-      background-color: #29e738; /* Color of the slider thumb */
-      border: none;
-      border-radius: 50%; /* Rounded corners for circular appearance */
-      cursor: pointer;
-      appearance: none; /* Remove default styling */
-    }
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #1c1c1c; /* Changed green to black */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  appearance: none;
+}
 
-    input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      background-color: #29e738;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #1c1c1c; /* Changed green to black */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-    span {
-      display: inline-block;
-      margin-left: 5px;
-    }
+span {
+  display: inline-block;
+  margin-left: 5px;
+}
 
-    button {
-      background-color: #29e738;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+button {
+  background-color: #000; /* Changed blue to black */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-    button:hover {
-      background-color: #1c1c1c;
-    }
+button:hover {
+  background-color: #1c1c1c;
+}
 
-    .interactive-button {
-      display: inline-block;
-      margin: 0 10px;
-      background-color: #29e738;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.interactive-button {
+  display: inline-block;
+  margin: 0 10px;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-    .interactive-button:hover {
-      background-color: #1c1c1c;
-    }
+.interactive-button:hover {
+  background-color: #8b8181;
+}
 
-    .interactive-buttons {
-      display: inline-block;
-    }
+.interactive-buttons {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.parameter-label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
   </style>
 </head>
 <body>
@@ -120,96 +129,84 @@
   <!-- Name -->
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" required>
-  <br><br>
 
+  <!-- Age -->
   <label for="age">Age:</label>
   <input type="number" id="age" name="age" required>
-  <br><br>
 
-  <label for="gender">Gender:</label>
+  <!-- Gender -->
+  <label>Gender:</label>
   <div class="interactive-buttons">
     <button type="button" class="interactive-button gender-button" data-value="1">Male</button>
     <button type="button" class="interactive-button gender-button" data-value="0">Female</button>
   </div>
   <input type="hidden" id="gender" name="gender" required>
-  <br><br>
 
+  <!-- Sleep Duration -->
   <label for="sleepDuration">Sleep Duration (in hrs):</label>
   <input type="text" id="sleepDuration" name="sleepDuration" placeholder="6" required>
-  <br><br>
 
+  <!-- Quality Of Sleep -->
   <label for="qualityOfSleep">Quality Of Sleep (Rate yourself on a scale of 1 to 10):</label>
   <input type="range" id="qualityOfSleep" name="qualityOfSleep" min="0" max="10" step="1" value="5" required>
-  <span id="qualityOfSleepValue">0</span>
-  <br><br>
+  <span id="qualityOfSleepValue">5</span>
 
+  <!-- Physical Activity -->
   <label for="physicalActivity">Physical Activity Level (Rate yourself on a scale of 1 to 10):</label>
   <input type="range" id="physicalActivity" name="physicalActivity" min="0" max="10" step="0.1" value="6" required>
-  <span id="physicalActivityValue">0</span>
-  <br><br>
+  <span id="physicalActivityValue">6</span>
 
+  <!-- Stress Level -->
   <label for="stressLevel">Stress Level (Rate yourself on a scale of 1 to 10):</label>
   <input type="range" id="stressLevel" name="stressLevel" min="0" max="10" step="1" value="4" required>
-  <span id="stressLevelValue">0</span>
-  <br></br>
+  <span id="stressLevelValue">4</span>
 
+  <!-- Height -->
   <label for="height">Height (meters):</label>
-  <input type="number" step="0.01" id="height" name="height" placeholder="1.7"required>
-  <br><br>
+  <input type="number" step="0.01" id="height" name="height" placeholder="1.7" required>
 
+  <!-- Weight -->
   <label for="weight">Weight (kg):</label>
   <input type="number" step="0.1" id="weight" name="weight" placeholder="74" required>
-  <br><br>
 
+  <!-- BMI -->
   <label for="bmi">BMI:</label>
   <input type="text" id="bmi" name="bmi" readonly>
-  <br><br>
 
+  <!-- Blood Pressure -->
   <label for="bloodPressure">Blood Pressure (in mm-Hg):</label>
-  <input type="text" id="bloodPressure" name="bloodPressure" required placeholder="120/80" required>
-  <br><br>
+  <input type="text" id="bloodPressure" name="bloodPressure" placeholder="120/80" required>
 
+  <!-- Heart Rate -->
   <label for="heartRate">Heart Rate (Beats per Minutes):</label>
   <input type="number" id="heartRate" name="heartRate" placeholder="75" required>
-  <br><br>
 
+  <!-- Daily Steps -->
   <label for="dailySteps">Daily Steps:</label>
   <input type="number" id="dailySteps" name="dailySteps" placeholder="1000" required>
-  <br><br>
 
-  <!-- Fever -->
-  <!-- <label for="fever">Fever:</label>
-  <div class="interactive-buttons">
-    <button type="button" class="interactive-button fever-button" data-value="1">Yes</button>
-    <button type="button" class="interactive-button fever-button" data-value="0">No</button>
-  </div>
-  <input type="hidden" id="fever" name="fever" required>
-  <br><br> -->
-
-  <label for="bodytemp">Body Temperature (degree celcius): </label>
-  <input type="number" id="bodytemp" name="bodytemp" placeholder="70" required>
-  <br><br>
+  <!-- Body Temperature -->
+  <label for="bodytemp">Body Temperature (degree Celsius): </label>
+  <input type="number" id="bodytemp" name="bodytemp" placeholder="37.5" required>
 
   <!-- Cough -->
-  <label for="cough">Cough:</label>
+  <label>Cough:</label>
   <div class="interactive-buttons">
     <button type="button" class="interactive-button cough-button" data-value="1">Yes</button>
     <button type="button" class="interactive-button cough-button" data-value="0">No</button>
   </div>
   <input type="hidden" id="cough" name="cough" required>
-  <br><br>
 
   <!-- Fatigue -->
-  <label for="fatigue">Fatigue (Extreme Tiredness):</label>
+  <label>Fatigue (Extreme Tiredness):</label>
   <div class="interactive-buttons">
     <button type="button" class="interactive-button fatigue-button" data-value="1">Yes</button>
     <button type="button" class="interactive-button fatigue-button" data-value="0">No</button>
   </div>
   <input type="hidden" id="fatigue" name="fatigue" required>
-  <br><br>
 
   <!-- Difficulty in Breathing -->
-  <label for="difficultyBreathing">Difficulty In Breathing:</label>
+  <label>Difficulty In Breathing:</label>
   <div class="interactive-buttons">
     <button type="button" class="interactive-button breathing-button" data-value="1">Yes</button>
     <button type="button" class="interactive-button breathing-button" data-value="0">No</button>
@@ -217,23 +214,19 @@
   <input type="hidden" id="difficultyBreathing" name="difficultyBreathing" required>
   <br><br>
 
-  <!-- <label for="cholesterolLevel">Cholesterol Level (mg/dL):</label>
-  <input type="number" id="cholesterolLevel" name="cholesterolLevel" placeholder="For Ex :- 210" oninput="checkCholesterolLevel()" required>
-  <br><br> -->
-
-  <!-- Saturated and Trans Fats -->
+  <!-- Parameter Section -->
   <div>
-    <div><label for="saturatedTransFats">Saturated and Trans Fats<br> (Red meat, full-fat dairy products, processed foods, and commercially baked goods):</label></div>
-<div class="interactive-buttons">
-  <button type="button" class="interactive-button fats-button" data-value=2>Daily</button>
-  <button type="button" class="interactive-button fats-button" data-value=1>Frequently</button>
-  <button type="button" class="interactive-button fats-button" data-value=0>Rarely</button>
-</div>
-<input type="hidden" id="saturatedTransFats" name="saturatedTransFats" required>
-</div>
-<br><br>
+    <label class="parameter-label">Saturated and Trans Fats<br> (Red meat, full-fat dairy products, processed foods, and commercially baked goods):</label>
+    <div class="interactive-buttons">
+      <button type="button" class="interactive-button fats-button" data-value="2">Daily</button>
+      <button type="button" class="interactive-button fats-button" data-value="1">Frequently</button>
+      <button type="button" class="interactive-button fats-button" data-value="0">Rarely</button>
+    </div>
+    <input type="hidden" id="saturatedTransFats" name="saturatedTransFats" required>
+  </div>
+  <br><br>
 
-<!-- Dietary Cholesterol -->
+  <!-- Dietary Cholesterol -->
 <label for="dietaryCholesterol">Dietary Cholesterol<br> (Egg yolks, organ meats, and shellfish):</label>
 <div class="interactive-buttons">
   <button type="button" class="interactive-button cholesterol-button" data-value=2>Daily</button>
@@ -266,7 +259,7 @@
 <!-- Alcohol Consumption -->
 <label for="alcoholConsumption">Alcohol Consumption:</label>
 <div class="interactive-buttons">
-  <button type="button" class="interactive-button alcohol-button" data-value=2>Dily</button>
+  <button type="button" class="interactive-button alcohol-button" data-value=2>Daily</button>
   <button type="button" class="interactive-button alcohol-button" data-value=1>Frequently</button>
   <button type="button" class="interactive-button alcohol-button" data-value=0>Rarely/No</button>
 </div>
@@ -282,111 +275,125 @@
 <input type="hidden" id="smoking" name="smoking" required>
 <br><br>
 
-   <button type="reset">Reset</button>
+
+  <!-- Submit and Reset Buttons -->
+  <button type="reset">Reset</button>
   <button type="submit">Submit</button>
 </form>
 
 <script>
  
 
-// Display the current value of the sliders
-document.getElementById('physicalActivity').addEventListener('input', function() {
-  document.getElementById('physicalActivityValue').innerText = this.value;
-});
-
-document.getElementById('stressLevel').addEventListener('input', function() {
-  document.getElementById('stressLevelValue').innerText = this.value;
-});
-
-document.getElementById('qualityOfSleep').addEventListener('input', function() {
-  document.getElementById('qualityOfSleepValue').innerText = this.value;
-});
-
-
-// JavaScript function to calculate BMI
-function calculateBMI() {
-  var height = document.getElementById('height').value;
-  var weight = document.getElementById('weight').value;
-  var bmiField = document.getElementById('bmi');
-
-  if (height && weight) {
-    var bmi = (weight / (height * height)).toFixed(2);
-    bmiField.value = bmi;
-  } else {
-    bmiField.value = '';
-  }
-}
-
-// Attach the calculateBMI function to the input fields' input event
-document.getElementById('height').addEventListener('input', calculateBMI);
-document.getElementById('weight').addEventListener('input', calculateBMI);
-
-
-
-function checkCholesterolLevel() {
-  var cholesterolInput = document.getElementById("cholesterolLevel");
-  var output = document.getElementById("cholesterolOutput");
-  var cholesterolValue = parseFloat(cholesterolInput.value);
-
-  if (cholesterolValue < 200) {
-    cholesterolInput.setAttribute("value",0);
-  } else if (cholesterolValue >= 200 && cholesterolValue <= 239) {
-    cholesterolInput.setAttribute("value",1);
-  } else {
-    cholesterolInput.setAttribute("value",2);
-  }
-  console.log(cholesterolInput.getAttribute("value"))
-}
-
-
-// Function to handle interactive buttons
-function handleInteractiveButton(buttonClass, inputId) {
-  var buttons = document.querySelectorAll(buttonClass);
-  buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      var value = this.getAttribute('data-value');
-      document.getElementById(inputId).value = value;
-      resetInteractiveButtons(buttonClass, value);
-    });
+  // Display the current value of the sliders
+  document.getElementById('physicalActivity').addEventListener('input', function() {
+    document.getElementById('physicalActivityValue').innerText = this.value;
   });
-}
-
-// Function to reset interactive buttons' styles
-function resetInteractiveButtons(buttonClass, selectedValue) {
+  
+  document.getElementById('stressLevel').addEventListener('input', function() {
+    document.getElementById('stressLevelValue').innerText = this.value;
+  });
+  
+  document.getElementById('qualityOfSleep').addEventListener('input', function() {
+    document.getElementById('qualityOfSleepValue').innerText = this.value;
+  });
+  
+  
+  // JavaScript function to calculate BMI
+  function calculateBMI() {
+    var height = document.getElementById('height').value;
+    var weight = document.getElementById('weight').value;
+    var bmiField = document.getElementById('bmi');
+  
+    if (height && weight) {
+      var bmi = (weight / (height * height)).toFixed(2);
+      bmiField.value = bmi;
+    } else {
+      bmiField.value = '';
+    }
+  }
+  
+  // Attach the calculateBMI function to the input fields' input event
+  document.getElementById('height').addEventListener('input', calculateBMI);
+  document.getElementById('weight').addEventListener('input', calculateBMI);
+  
+  
+  
+  function checkCholesterolLevel() {
+    var cholesterolInput = document.getElementById("cholesterolLevel");
+    var output = document.getElementById("cholesterolOutput");
+    var cholesterolValue = parseFloat(cholesterolInput.value);
+  
+    if (cholesterolValue < 200) {
+      cholesterolInput.setAttribute("value",0);
+    } else if (cholesterolValue >= 200 && cholesterolValue <= 239) {
+      cholesterolInput.setAttribute("value",1);
+    } else {
+      cholesterolInput.setAttribute("value",2);
+    }
+    console.log(cholesterolInput.getAttribute("value"))
+  }
+  
+  
+  // Function to handle interactive buttons
+  function handleInteractiveButton(buttonClass, inputId) {
+    var buttons = document.querySelectorAll(buttonClass);
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var value = this.getAttribute('data-value');
+        document.getElementById(inputId).value = value;
+        resetInteractiveButtons(buttonClass, value);
+      });
+    });
+  }
+  
+  function resetInteractiveButtons(buttonClass, selectedValue) {
   var buttons = document.querySelectorAll(buttonClass);
   buttons.forEach(function(button) {
-    button.style.backgroundColor = button.getAttribute('data-value') === selectedValue ? '#1c1c1c' : '#29e738';
+    button.style.backgroundColor = button.getAttribute('data-value') === selectedValue ? '#29e738' : '#1c1c1c';
     button.style.color = button.getAttribute('data-value') === selectedValue ? '#fff' : 'initial';
   });
 }
 
-// Call the function for each set of interactive buttons
-handleInteractiveButton('.gender-button', 'gender');
-handleInteractiveButton('.fever-button', 'fever');
-handleInteractiveButton('.cough-button', 'cough');
-handleInteractiveButton('.fatigue-button', 'fatigue');
-handleInteractiveButton('.breathing-button', 'difficultyBreathing');
-
-handleParameterButtons('Saturated and Trans Fats', 'fats-button', 'saturatedTransFats');
-handleParameterButtons('Dietary Cholesterol', 'cholesterol-button', 'dietaryCholesterol');
-handleParameterButtons('Omega-3 Fatty Acids', 'omega3-button', 'omega3FattyAcids');
-handleParameterButtons('Soluble Fiber', 'fiber-button', 'solubleFiber');
-handleParameterButtons('Alcohol Consumption', 'alcohol-button', 'alcoholConsumption');
-handleParameterButtons('Smoking', 'smoking-button', 'smoking');
-
-function handleParameterButtons(parameter, buttonClass, inputId) {
-  var buttons = document.querySelectorAll('.' + buttonClass);
-  buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      var value = this.getAttribute('data-value');
-      document.getElementById(inputId).value = value;
-      resetInteractiveButtons('.' + buttonClass, value);
+function resetInteractiveButtons(buttonClass, selectedValue) {
+    var buttons = document.querySelectorAll(buttonClass);
+    buttons.forEach(function(button) {
+      if (button.getAttribute('data-value') === selectedValue) {
+        button.style.backgroundColor = '#29e738';
+        button.style.color = 'white';
+      } else {
+        button.style.backgroundColor = '#1c1c1c';
+        button.style.color = 'white';
+      }
     });
-  });
-}
-
-
-</script>
+  }
+  
+  // Call the function for each set of interactive buttons
+  handleInteractiveButton('.gender-button', 'gender');
+  handleInteractiveButton('.fever-button', 'fever');
+  handleInteractiveButton('.cough-button', 'cough');
+  handleInteractiveButton('.fatigue-button', 'fatigue');
+  handleInteractiveButton('.breathing-button', 'difficultyBreathing');
+  
+  handleParameterButtons('Saturated and Trans Fats', 'fats-button', 'saturatedTransFats');
+  handleParameterButtons('Dietary Cholesterol', 'cholesterol-button', 'dietaryCholesterol');
+  handleParameterButtons('Omega-3 Fatty Acids', 'omega3-button', 'omega3FattyAcids');
+  handleParameterButtons('Soluble Fiber', 'fiber-button', 'solubleFiber');
+  handleParameterButtons('Alcohol Consumption', 'alcohol-button', 'alcoholConsumption');
+  handleParameterButtons('Smoking', 'smoking-button', 'smoking');
+  
+  function handleParameterButtons(parameter, buttonClass, inputId) {
+    var buttons = document.querySelectorAll('.' + buttonClass);
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var value = this.getAttribute('data-value');
+        document.getElementById(inputId).value = value;
+        resetInteractiveButtons('.' + buttonClass, value);
+      });
+    });
+  }
+  
+  
+  </script>
 
 </body>
 </html>

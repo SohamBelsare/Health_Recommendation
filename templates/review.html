@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        text-align: center;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 600px;
+        margin-top: 20px;
+    }
+
+    h1,
+    h2 {
+        color: #333333;
+    }
+
+    .attribute,
+    .suggestion-container p {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .normal-range {
+        color: rgb(4, 158, 4);
+    }
+
+    .out-of-range {
+        color: #FF5722;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* table */
+    .table-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .attribute-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .attribute-table td {
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .attribute {
+        font-weight: bold;
+        text-align: left;
+        width: 40%;
+        color: rgb(116, 111, 111);
+    }
+
+    .spacer {
+        width: 40%;
+        text-align: center;
+        font-weight: bold;
+        color:  rgb(116, 111, 111);;
+    }
+
+    .value {
+        text-align: center;
+        font-weight: bold;
+        color:  rgb(116, 111, 111);;
+        width: 20%;
+    }
+
+
+    </style>
+    <title>Health Assessment</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Report</h1>
+        <h2><span id="name" style="color: darkblue;">{{ data.name }}</span></h2>
+
+        <div class="table-container">
+            <table class="attribute-table">
+                <tr>
+                    <td class="attribute" style="color:black;">Attributes</td>
+                    <td class="spacer" style="color:black;">Normal Range</td>
+                    <td class="value" style="color:black;">Result</td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="sleepDuration">Sleep Duration</td>
+                    <td class="spacer">6-9 Hours</td>
+                    <td class="value"><span id="sleepDurationValue" class="normal-range">{{ data.sleepDuration }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="qualityOfSleep">Quality of Sleep</td>
+                    <td class="spacer">Greater than 5</td>
+                    <td class="value"><span id="qualityOfSleepValue" class="normal-range">{{ data.qualityOfSleep }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="physicalActivityLevel">Physical Activity Level</td>
+                    <td class="spacer">Greater than 60</td>
+                    <td class="value"><span id="physicalActivityLevelValue" class="normal-range">{{ data.physicalActivityLevel }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="stressLevel">Stress Level</td>
+                    <td class="spacer">Less than 2.5</td>
+                    <td class="value"><span id="stressLevelValue" class="normal-range">{{ data.stressLevel }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="bmi">BMI</td>
+                    <td class="spacer">Between 18.5 and 24.9</td>
+                    <td class="value"><span id="bmiValue" class="normal-range">{{ data.bmi }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="bloodPressure">Blood Pressure</td>
+                    <td class="spacer">Between 90 and 120 mm-Hg</td>
+                    <td class="value"><span id="bloodPressureValue" class="normal-range">{{ data.bloodPressure }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="heartRate">Heart Rate</td>
+                    <td class="spacer">Between 60 and 100 BPM</td>
+                    <td class="value"><span id="heartRateValue" class="normal-range">{{ data.heartRate }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="dailySteps">Daily Steps</td>
+                    <td class="spacer">Greater than 5000</td>
+                    <td class="value"><span id="dailyStepsValue" class="normal-range">{{ data.dailySteps }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="fever">Fever</td>
+                    <td class="spacer">Less than 98.6 F or 37 C</td>
+                    <td class="value"><span id="feverValue" class="normal-range">{{ data.fever }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="cough" colspan="2">Cough</td>
+                    <td class="value"><span id="coughValue" class="normal-range">{{ data.cough }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="fatigue" colspan="2">Fatigue</td>
+                    <td class="value"><span id="fatigueValue" class="normal-range">{{ data.fatigue }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="breathingDifficulty" colspan="2">Difficulty in Breathing</td>
+                    <td class="value"><span id="breathingDifficultyValue" class="normal-range">{{ data.breathingDifficulty }}</span></td>
+                </tr>
+                <tr>
+                    <td class="attribute" id="cholesterol" colspan="2">Cholesterol chances from diatery habits</td>
+                    <td class="value"><span id="cholesterolValue" class="normal-range">{{ data.cholesterol }}</span></td>
+                </tr>
+            </table>
+        </div>
+        
+    
+        <script>
+            function applyColorCoding() {
+                // Sleep Duration
+                colorCodeAttribute('sleepDurationValue', isNormalSleepDuration);
+        
+                // Quality of Sleep
+                colorCodeAttribute('qualityOfSleepValue', isNormalQualityOfSleep);
+        
+                // Physical Activity Level
+                colorCodeAttribute('physicalActivityLevelValue', isNormalPhysicalActivityLevel);
+        
+                // Stress Level
+                colorCodeAttribute('stressLevelValue', isNormalStressLevel);
+        
+                // BMI
+                colorCodeAttribute('bmiValue', isNormalBMI);
+        
+                // Blood Pressure
+                colorCodeAttribute('bloodPressureValue', isNormalBloodPressure);
+        
+                // Heart Rate
+                colorCodeAttribute('heartRateValue', isNormalHeartRate);
+        
+                // Daily Steps
+                colorCodeAttribute('dailyStepsValue', isNormalDailySteps);
+        
+                // Fever
+                convertToYesNo('feverValue', isNormalFever);
+
+                // Cough
+                convertToYesNo('coughValue', isNormalCough);
+
+                // Fatigue
+                convertToYesNo('fatigueValue', isNormalFatigue);
+
+                // Difficulty in Breathing
+                convertToYesNo('breathingDifficultyValue', isNormalBreathingDifficulty);
+
+                // Cholesterol
+                convertToYesNo('cholesterolValue', isNormalCholesterol);
+            }
+        
+            function colorCodeAttribute(elementId, isNormalFunction) {
+                var valueElement = document.getElementById(elementId);
+                var value = parseFloat(valueElement.innerText);
+        
+                if (isNormalFunction(value)) {
+                    valueElement.classList.add('normal-range');
+                } else {
+                    valueElement.classList.remove('normal-range');
+                    valueElement.classList.add('out-of-range');
+                }
+            }
+
+            function convertToYesNo(elementId, isNormalFunction) {
+                var valueElement = document.getElementById(elementId);
+                var value = parseFloat(valueElement.innerText);
+
+                if (isNormalFunction(value)) {
+                    valueElement.innerText = 'No';
+                    valueElement.classList.remove('out-of-range');
+                } else {
+                    valueElement.innerText = 'Yes';
+                    valueElement.classList.add('out-of-range');
+                }
+            }
+        
+            // Call the function when the page loads
+            window.onload = applyColorCoding;
+
+            function isNormalSleepDuration(value) {
+            // Replace with actual logic to determine if the sleep duration is normal
+            if(value>=6 && value <=9){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalQualityOfSleep(value) {
+            if(value>=5 && value <=10){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+        function isNormalPhysicalActivityLevel(value) {
+            if(value>=60){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalStressLevel(value) {
+            if(value>=2.5){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        function isNormalBMI(value) {
+            if(value>=18.5 && value <=24.9){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalBloodPressure(value) {
+            if(value>=90 && value <=120){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalHeartRate(value) {
+            if(value>=60 && value <=100){
+                return true;
+            }
+            else{
+                return false;
+        }
+    }
+
+
+        function isNormalDailySteps(value){
+            if(value>=5000){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function isNormalFever(value) {
+          
+          if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalCough(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalFatigue(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalBreathingDifficulty(value) {
+        if(value){
+              return false;
+          }
+          else{
+              return true;
+          }
+      }
+
+      function isNormalCholesterol(value) {
+            if(value==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        </script>
+        
+    
+
+
+  
+
+</body>
+</html>

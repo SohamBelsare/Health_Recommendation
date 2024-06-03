@@ -130,8 +130,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Health Assessment</h1>
-        <h2><span id="name" style="color: darkblue;"></span></h2>
+        <h1>Health Report</h1>
+        <h2><span id="name" style="color: darkblue;">{{ data.name }}</span></h2>
 
         <div class="table-container">
             <table class="attribute-table">
@@ -143,116 +143,90 @@
                 <tr>
                     <td class="attribute" id="sleepDuration">Sleep Duration</td>
                     <td class="spacer">6-9 Hours</td>
-                    <td class="value"><span id="sleepDurationValue" class="normal-range"></span></td>
+                    <td class="value"><span id="sleepDurationValue" class="normal-range">{{ data.sleepDuration }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="qualityOfSleep">Quality of Sleep</td>
                     <td class="spacer">Greater than 5</td>
-                    <td class="value"><span id="qualityOfSleepValue" class="normal-range"></span></td>
+                    <td class="value"><span id="qualityOfSleepValue" class="normal-range">{{ data.qualityOfSleep }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="physicalActivityLevel">Physical Activity Level</td>
                     <td class="spacer">Greater than 60</td>
-                    <td class="value"><span id="physicalActivityLevelValue" class="normal-range"></span></td>
+                    <td class="value"><span id="physicalActivityLevelValue" class="normal-range">{{ data.physicalActivityLevel }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="stressLevel">Stress Level</td>
                     <td class="spacer">Less than 2.5</td>
-                    <td class="value"><span id="stressLevelValue" class="normal-range"></span></td>
+                    <td class="value"><span id="stressLevelValue" class="normal-range">{{ data.stressLevel }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="bmi">BMI</td>
                     <td class="spacer">Between 18.5 and 24.9</td>
-                    <td class="value"><span id="bmiValue" class="normal-range"></span></td>
+                    <td class="value"><span id="bmiValue" class="normal-range">{{ data.bmi }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="bloodPressure">Blood Pressure</td>
                     <td class="spacer">Between 90 and 120 mm-Hg</td>
-                    <td class="value"><span id="bloodPressureValue" class="normal-range"></span></td>
+                    <td class="value"><span id="bloodPressureValue" class="normal-range">{{ data.bloodPressure }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="heartRate">Heart Rate</td>
                     <td class="spacer">Between 60 and 100 BPM</td>
-                    <td class="value"><span id="heartRateValue" class="normal-range"></span></td>
+                    <td class="value"><span id="heartRateValue" class="normal-range">{{ data.heartRate }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="dailySteps">Daily Steps</td>
                     <td class="spacer">Greater than 5000</td>
-                    <td class="value"><span id="dailyStepsValue" class="normal-range"></span></td>
+                    <td class="value"><span id="dailyStepsValue" class="normal-range">{{ data.dailySteps }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="fever">Fever</td>
                     <td class="spacer">Less than 98.6 F or 37 C</td>
-                    <td class="value"><span id="feverValue" class="normal-range"></span></td>
+                    <td class="value"><span id="feverValue" class="normal-range">{{ data.fever }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="cough" colspan="2">Cough</td>
-                    <td class="value"><span id="coughValue" class="normal-range"></span></td>
+                    <td class="value"><span id="coughValue" class="normal-range">{{ data.cough }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="fatigue" colspan="2">Fatigue</td>
-                    <td class="value"><span id="fatigueValue" class="normal-range"></span></td>
+                    <td class="value"><span id="fatigueValue" class="normal-range">{{ data.fatigue }}</span></td>
                 </tr>
                 <tr>
                     <td class="attribute" id="breathingDifficulty" colspan="2">Difficulty in Breathing</td>
-                    <td class="value"><span id="breathingDifficultyValue" class="normal-range"></span></td>
+                    <td class="value"><span id="breathingDifficultyValue" class="normal-range">{{ data.breathingDifficulty }}</span></td>
                 </tr>
                 <tr>
-                    <td class="attribute" id="cholesterol" colspan="2">Cholesterol chances from diatery habits</td>
-                    <td class="value"><span id="cholesterolValue" class="normal-range"></span></td>
+                    <td class="attribute" id="cholesterol" colspan="2">Cholesterol</td>
+                    <td class="value"><span id="cholesterolValue" class="normal-range">{{ data.cholesterol }}</span></td>
                 </tr>
             </table>
         </div>
-        <div id="visitResult"></div>
-
-        <button onclick="fetchHealthData()">Fetch Health Data</button>
-    </div>
+        
     
    
-    <div class="suggestion-container">
-        <h2>Suggestions:</h2>
-        <!-- Use an unordered list to display suggestions -->
-        <div class="suggestion-card">
-            <ul id="suggestionList" class="suggestion-list"></ul>
-        </div>
-    </div>
+    
 
 
     <script>
-        function fetchHealthData() {
-            fetch('/get_health_data')
-                .then(response => response.json())
-                .then(data => {
-                    // Update attribute values and colors
-                    // updateAttribute("genderValue", data.gender, isNormalGender(data.gender));
-                    // updateAttribute("ageValue", data.age, isNormalAge(data.age));
-                    updateAttribute("name", data.name,true );
-                    updateAttribute("sleepDurationValue", data.sleepDuration, isNormalSleepDuration(data.sleepDuration));
-                    updateAttribute("qualityOfSleepValue", data.qualityOfSleep, isNormalQualityOfSleep(data.qualityOfSleep));
-                    updateAttribute("physicalActivityLevelValue", data.physicalActivityLevel, isNormalPhysicalActivityLevel(data.physicalActivityLevel));
-                    updateAttribute("stressLevelValue", data.stressLevel, isNormalStressLevel(data.stressLevel));
-                    updateAttribute("bmiValue", data.bmi, isNormalBMI(data.bmi));
-                    updateAttribute("bloodPressureValue", data.bloodPressure, isNormalBloodPressure(data.bloodPressure));
-                    updateAttribute("heartRateValue", data.heartRate, isNormalHeartRate(data.heartRate));
-                    updateAttribute("dailyStepsValue", data.dailySteps, isNormalDailySteps(data.dailySteps));
-                    updateAttribute("feverValue", convertToYesNo(data.fever), isNormalFever(data.fever));
-                    updateAttribute("coughValue", convertToYesNo(data.cough), isNormalCough(data.cough));
-                    updateAttribute("fatigueValue", convertToYesNo(data.fatigue), isNormalFatigue(data.fatigue));
-                    updateAttribute("breathingDifficultyValue", convertToYesNo(data.breathingDifficulty), isNormalBreathingDifficulty(data.breathingDifficulty));
-                    updateAttribute("cholesterolValue",convertToYesNo(data.cholesterol), isNormalCholesterol(data.cholesterol));
+       
+                    updateAttribute("sleepDurationValue",document.getElementById("sleepDuration"), isNormalSleepDuration(data.sleepDuration));
+                    updateAttribute("qualityOfSleepValue",document.getElementById("qualityOfSleep"), isNormalQualityOfSleep(data.qualityOfSleep));
+                    updateAttribute("physicalActivityLevelValue", document.getElementById("physicalActivityLevel"), isNormalPhysicalActivityLevel(data.physicalActivityLevel));
+                    updateAttribute("stressLevelValue", document.getElementById("stressLevel"), isNormalStressLevel(data.stressLevel));
+                    updateAttribute("bmiValue", document.getElementById("bmi"), isNormalBMI(data.bmi));
+                    updateAttribute("bloodPressureValue", document.getElementById("bloodPressure"), isNormalBloodPressure(data.bloodPressure));
+                    updateAttribute("heartRateValue", document.getElementById("heartRate"), isNormalHeartRate(data.heartRate));
+                    updateAttribute("dailyStepsValue", document.getElementById("dailySteps"), isNormalDailySteps(data.dailySteps));
+                    updateAttribute("feverValue", convertToYesNo(document.getElementById("fever")), isNormalFever(data.fever));
+                    updateAttribute("coughValue", convertToYesNo(document.getElementById("cough")), isNormalCough(data.cough));
+                    updateAttribute("fatigueValue", convertToYesNo(document.getElementById("fatigue")), isNormalFatigue(data.fatigue));
+                    updateAttribute("breathingDifficultyValue", convertToYesNo(document.getElementById("breathingDifficulty")), isNormalBreathingDifficulty(data.breathingDifficulty));
+                    updateAttribute("cholesterolValue",convertToYesNo(document.getElementById("cholesterol")), isNormalCholesterol(data.cholesterol));
 
-                    // Perform health assessment logic
-                    let shouldVisitDoctor = data.result;
-
-                    // Display assessment result
-                    const resultElement = document.getElementById("visitResult");
-                    resultElement.textContent = shouldVisitDoctor ? "You need to consult a doctor !" : "You're doing well. No need to visit a doctor at the moment.But do have a regular checkup every month";
-
-                    updateSuggestionCard(data);
-
-                })
-                .catch(error => console.error('Error fetching health data:', error));
-        }
+                   
+                
 
         function updateAttribute(attributeId, value, isNormal) {
             const element = document.getElementById(attributeId);
